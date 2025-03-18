@@ -1,0 +1,9 @@
+label[for]:has(~ input:required)::after {
+  content: " *";
+  color: red;
+  font-weight: bold;
+}
+
+.message {
+  margin: 20px;
+}

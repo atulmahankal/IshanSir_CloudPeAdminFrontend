@@ -91,4 +91,15 @@ return [
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
     ],
+
+    // Virtuozzo API configuration
+    'Api' => [
+      'VIRTUZZO' => [
+        'base_url' => 'http://localhost/1.0', // Base URL for the API
+        'headers' => [
+            // 'Authorization' => 'Bearer YOUR_ACCESS_TOKEN',
+            'Accept' => 'application/json'
+        ]
+      ]
+    ]
 ];
