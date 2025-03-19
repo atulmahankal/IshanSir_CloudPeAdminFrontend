@@ -27,9 +27,13 @@
 }
 
 .message.error {
-  @apply p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400;
+  @apply fixed top-0 right-0 z-60 cursor-pointer animate-bounce shadow-xl w-full max-w-sm ring-1 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400;
 }
 
 .message.success {
-  @apply p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400;
+  @apply fixed top-0 right-0 z-60 cursor-pointer animate-bounce shadow-xl w-full max-w-sm ring-1 p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400;
+}
+
+button, a {
+  @apply cursor-pointer
 }

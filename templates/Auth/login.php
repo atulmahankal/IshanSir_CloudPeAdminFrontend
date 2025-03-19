@@ -30,7 +30,7 @@ $this->assign('title', "Login");
         </div>
         <div>
           <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-          <input type="password" name="password" id="password" class="input-text" placeholder="••••••••" autocomplete="current-password" value="<?= $this->request->getData('password') ?>">
+          <input type="password" name="password" id="password" class="input-text" placeholder="••••••••" autocomplete="current-password" value="">
         </div>
         <div class="flex items-center justify-between">
           <div class="flex items-start">

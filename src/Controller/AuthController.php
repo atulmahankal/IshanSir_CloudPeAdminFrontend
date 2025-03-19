@@ -64,7 +64,7 @@ class AuthController extends AppController
           $this->Flash->error(__($resData['error']));
         }
 
-        if ($resData['session']) {
+        if (!empty($resData['session'])) {
           $this->request->getSession()->write('Auth.User', [
             "accessType" => $resData['accessType'],
             "session" => $resData['session'],

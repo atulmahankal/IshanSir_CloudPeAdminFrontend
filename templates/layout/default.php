@@ -47,6 +47,7 @@ $auth = $this->request->getSession()->read('Auth.User');
 </head>
 
 <body>
+  <?= $this->Flash->render() ?>
   <div class="antialiased bg-gray-50 dark:bg-gray-900">
     <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
       <div class="flex flex-wrap justify-between items-center">
@@ -547,10 +548,14 @@ $auth = $this->request->getSession()->read('Auth.User');
             aria-expanded="false"
             data-dropdown-toggle="dropdown">
             <span class="sr-only">Open user menu</span>
-            <img
+            <?= $this->Html->image("https://ui-avatars.com/api/?background=random&name=". urlencode(h($auth['name'])),[
+              "alt" => "Profile Image",
+              "class" =>"w-8 h-8 rounded-full"
+            ]) ?>
+            <!-- <img
               class="w-8 h-8 rounded-full"
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
-              alt="user photo" />
+              alt="user photo" /> -->
           </button>
 
           <!-- Dropdown menu -->
@@ -1167,8 +1172,7 @@ $auth = $this->request->getSession()->read('Auth.User');
     </aside>
 
     <main class="p-4 md:ml-64 h-auto pt-20">
-      <?= $this->Flash->render() ?>
-      <?= $this->fetch('content') ?>
+    <?= $this->fetch('content') ?>
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>

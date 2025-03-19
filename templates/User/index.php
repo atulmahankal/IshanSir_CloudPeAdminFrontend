@@ -20,7 +20,7 @@
               <?= h($record['email']) ?>
             </td>
             <td class="border px-6 py-4">
-              <?= h($record['group']['type']) ?>
+              <?= h($record['group']['name']) ?>
             </td>
             <td class="border px-6 py-4 text-right">
               <?= h($record['balance']) ?>
