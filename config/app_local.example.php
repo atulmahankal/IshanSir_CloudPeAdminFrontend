@@ -100,6 +100,15 @@ return [
             // 'Authorization' => 'Bearer YOUR_ACCESS_TOKEN',
             'Accept' => 'application/json'
         ]
+      ],
+      'HOSTBILL' =>[
+        'base_url' => 'http://localhost/api.php/', // Base URL for the API
+        'API_ID' => '',
+        'API_KEY' => '',
+        'headers' => [
+            // 'Authorization' => 'Bearer YOUR_ACCESS_TOKEN',
+            'Accept' => 'application/json'
+        ]
       ]
     ]
 ];

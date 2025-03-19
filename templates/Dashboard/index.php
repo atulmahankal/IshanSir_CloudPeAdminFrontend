@@ -1,3 +1,6 @@
+<?php
+  $this->assign('title', 'Dashboard');
+?>
 <div class="flex flex-col items-center justify-center bg-gray-100">
 <div class="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
     <h2 class="text-2xl font-bold mb-4">Welcome, <?= h($auth['name']) ?></h2>

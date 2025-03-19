@@ -37,3 +37,8 @@
 button, a {
   @apply cursor-pointer
 }
+
+button.disable, a.disable {
+  @apply pointer-events-none
+}
+
