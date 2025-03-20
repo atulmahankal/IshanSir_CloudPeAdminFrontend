@@ -55,6 +55,9 @@ class HostBillService
         $resData = $response->getJson();
         // Log::write('debug', json_encode($resData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
+        // header('Content-Type: application/json; charset=utf-8');
+        // die(json_encode($resData));
+
         if (!empty($resData['error'])) {
           return ['success' => false, 'error' => $resData['error']];
         }

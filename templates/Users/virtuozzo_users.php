@@ -20,8 +20,9 @@ $this->assign('title', 'Virtuozzo Users');
     <thead class="sticky top-0 bg-gray-300 dark:bg-gray-800 text-xs text-gray-700 uppercase dark:text-gray-400">
       <tr class="text-center text-gray dark:text-white">
         <th scope="col" class="border px-4 py-3">#</th>
-        <th scope="col" class="border px-4 py-3">ID</th>
+        <th scope="col" class="border px-4 py-3">User ID</th>
         <th scope="col" class="border px-4 py-3">Email</th>
+        <th scope="col" class="border px-4 py-3">Phone Number</th>
         <th scope="col" class="border px-4 py-3">Group</th>
         <th scope="col" class="border px-4 py-3">Balance</th>
         <th scope="col" class="border px-4 py-3" style="min-width: 110px;">Since Date (UTC)</th>
@@ -35,10 +36,13 @@ $this->assign('title', 'Virtuozzo Users');
               <?= h($index + 1) ?>
             </td>
             <td class="border px-4 py-3">
-              <?= h($record['id']) ?>
+              <?= h($record['uid']) ?>
             </td>
             <td class="border px-4 py-3">
               <?= h($record['email']) ?>
+            </td>
+            <td class="border px-4 py-3">
+              <?= h($record['phoneNumber'] ?? null) ?>
             </td>
             <td class="border px-4 py-3">
               <?= h($record['group']['name']) ?>
@@ -59,6 +63,8 @@ $this->assign('title', 'Virtuozzo Users');
     </tbody>
   </table>
 </div>
+
+<!-- <?= $this->MyPaginator->render($paginator) ?> -->
 
 <div class="w-full bg-white shadow-md p-2 flex justify-center space-x-4 border-t">
   <?php

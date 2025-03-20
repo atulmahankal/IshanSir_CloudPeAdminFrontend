@@ -2,7 +2,7 @@
   $this->assign('title', 'HostBill Users');
 ?>
 
-<nav class="w-full p-2 text-center font-bold shadow-md z-20 flex items-center justify-between gap-x-4 bg-white">
+<!-- <nav class="w-full p-2 text-center font-bold shadow-md z-20 flex items-center justify-between gap-x-4 bg-white">
   <label class="flex items-center gap-x-2">
     <span>Per Page:</span>
     <select>
@@ -13,9 +13,9 @@
     </select>
   </label>
   <div>Display <?= ($sorter['perpage'] * $page) + 1 ?> to <?= ($sorter['perpage'] * ($page + 1)) ?> of <?= $sorter['sorterrecords'] ?> records</div>
-</nav>
+</nav> -->
 
-<div style="max-height: calc(100vh - 173px);" class="overflow-auto shadow-md sm:rounded-lg">
+<div style="max-height: calc(100vh - 0 /*173px*/);" class="overflow-auto shadow-md sm:rounded-lg">
   <table class="border w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
     <thead class="sticky top-0 bg-gray-300 dark:bg-gray-800 text-xs text-gray-700 uppercase dark:text-gray-400">
       <tr class="text-center text-gray dark:text-white">
@@ -60,7 +60,7 @@
   </table>
 </div>
 
-<div class="w-full bg-white shadow-md p-2 flex justify-center space-x-4 border-t">
+<!-- <div class="w-full bg-white shadow-md p-2 flex justify-center space-x-4 border-t">
   <button class="px-4 border rounded">&lt;&lt; First</button>
   <button class="px-4 border rounded">&lt; Previous</button>
   <select class="border rounded ring-0">
@@ -71,4 +71,4 @@
   </select>
   <button class="px-4 border rounded">Next &gt;</button>
   <button class="px-4 border rounded">Last &gt;&gt;</button>
-</div>
+</div> -->

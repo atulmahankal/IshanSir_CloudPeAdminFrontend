@@ -18,10 +18,9 @@
 <html>
 <head>
     <?= $this->Html->charset() ?>
-    <title>
-        <?= $this->fetch('title') ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
+    <title><?= $this->fetch('title') ?></title>
+    <!-- <?= $this->Html->meta('icon') ?> -->
+    <?= $this->Html->meta('icon', $this->Url->build('/img/fav-cloudpe-logo.svg')) ?>
 
     <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake']) ?>
 

@@ -37,13 +37,13 @@ class UsersController extends AppController
       return $this->redirect(['?' => array_merge($queryParams, ['page' => 1])]);
     }
 
-    $resultCount = (int) $this->request->getQuery('resultCount', 100); // Number of records per page;
-    $startRow = ((int) $this->request->getQuery('page', 1) - 1) * $resultCount;
+    $resultCount = (int) $this->request->getQuery('perpage', 100); // Number of records per page;
+    $startRow = ($page - 1) * $resultCount;
 
     // Read query parameters
     $queryParams = [
-      'orderField' => $this->request->getQuery('orderField', 'email'),
-      'orderDirection' => $this->request->getQuery('orderDirection', 'asc'),
+      // 'orderField' => $this->request->getQuery('orderField', 'email'),
+      // 'orderDirection' => $this->request->getQuery('orderDirection', 'asc'),
       'resultCount' => $resultCount,
       'startRow' => $startRow,
     ];
@@ -74,7 +74,18 @@ class UsersController extends AppController
     }
 
     $totalPages = ceil($totalCount / $resultCount);
-    $this->set(compact('records', 'totalCount', 'resultCount', 'startRow', 'totalPages'));
+
+    $paginator = [
+      'perpage' => $resultCount,
+      'from' => $startRow,
+      'total_records' => $totalCount,
+      'page' => $page,
+      'total_pages' => $totalPages
+    ];
+
+    // header('Content-Type: application/json; charset=utf-8');
+    // die(json_encode($paginator));
+    $this->set(compact('records', 'totalCount', 'resultCount', 'startRow', 'totalPages', 'paginator'));
   }
 
   public function hostbillUsers()
@@ -85,8 +96,9 @@ class UsersController extends AppController
     $hostBillService = new HostBillService();
     $queryParams = [
       'call' => 'getClients',
+      'filter[brand]'=> 'CloudPe',
       'perpage' =>  $this->request->getQuery('perpage', 100),
-      'page' =>  $page
+      // 'page' =>  $page
     ];
     $hostBillResponse = $hostBillService->getData($queryParams);
 
