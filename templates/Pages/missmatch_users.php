@@ -122,8 +122,51 @@ if (!empty($records)) {
 // header('Content-Type: application/json; charset=utf-8');
 // die(json_encode($records));
 
+if ($this->request->getQuery('download') !== null) {
+
+    // Decode JSON to PHP array
+    $dataArray = $records;
+
+    if (empty($dataArray)) {
+      $this->Flash->error(__('Invalid JSON data.'));
+      return $this->redirect($this->referer());
+    }
+
+    // Set Headers to force download
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename="missmatch_users.csv"');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+
+    // Open the output buffer to prevent any prior output issues
+    ob_clean();
+    flush();
+
+    // Open output stream for writing
+    $output = fopen('php://output', 'w');
+
+    // Add headers (Extract keys from the first element)
+    fputcsv($output, array_keys($dataArray[0]));
+
+    // Add rows
+    foreach ($dataArray as $row) {
+        fputcsv($output, $row);
+    }
+
+    // Close the file pointer
+    fclose($output);
+
+    // Ensure no further output is sent
+    exit;
+}
+
 $this->assign('title', 'Missmatch Users');
 ?>
+
+<div class="w-full px-4 py-2 text-center font-bold shadow-md z-20 flex items-center justify-between gap-x-4 bg-white">
+  <h3>Missmatch User</h3>
+  <?= $this->Html->link(__('Download'), ['controller' => 'Pages', 'action' => 'display', 'missmatch_users', '?' => ['download' => 'csv']], ['target' => '_blank', 'class' => 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800']) ?>
+</div>
 
 <div style="max-height: calc(100vh - 0);" class="overflow-auto shadow-md sm:rounded-lg">
   <table class="border w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
