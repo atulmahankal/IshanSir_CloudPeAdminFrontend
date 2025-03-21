@@ -41,9 +41,9 @@ class UsersController extends AppController
     $startRow = ($page - 1) * $resultCount;
 
     // Read query parameters
-    $queryParams = [
-      // 'orderField' => $this->request->getQuery('orderField', 'email'),
-      // 'orderDirection' => $this->request->getQuery('orderDirection', 'asc'),
+    $apiParams = [
+      'orderField' => $this->request->getQuery('orderField', 'uid'),
+      'orderDirection' => $this->request->getQuery('orderDirection', 'asc'),
       'resultCount' => $resultCount,
       'startRow' => $startRow,
     ];
@@ -52,13 +52,13 @@ class UsersController extends AppController
       !empty($this->request->getQuery('filterField'))
       && !empty($this->request->getQuery('filterValue'))
     ) {
-      $queryParams['filterField'] = $this->request->getQuery('filterField');
-      $queryParams['filterValue'] = $this->request->getQuery('filterValue');
+      $apiParams['filterField'] = $this->request->getQuery('filterField');
+      $apiParams['filterValue'] = $this->request->getQuery('filterValue');
     }
 
     // Call VirtuozzoService
     $virtuozzoService = new VirtuozzoService($this->request);
-    $virtuozzoResponse = $virtuozzoService->getData("billing/account/rest/getaccounts", $queryParams);
+    $virtuozzoResponse = $virtuozzoService->getData("billing/account/rest/getaccounts", $apiParams);
 
     if ($virtuozzoResponse['success']) {
       $records = $virtuozzoResponse['data']['array'] ?? [];
@@ -85,7 +85,7 @@ class UsersController extends AppController
 
     // header('Content-Type: application/json; charset=utf-8');
     // die(json_encode($paginator));
-    $this->set(compact('records', 'totalCount', 'resultCount', 'startRow', 'totalPages', 'paginator'));
+    $this->set(compact('queryParams', 'records', 'totalCount', 'resultCount', 'startRow', 'totalPages', 'paginator'));
   }
 
   public function hostbillUsers()
@@ -94,13 +94,13 @@ class UsersController extends AppController
 
     // Call HostBillService
     $hostBillService = new HostBillService();
-    $queryParams = [
+    $apiParams = [
       'call' => 'getClients',
       'filter[brand]'=> 'CloudPe',
       'perpage' =>  $this->request->getQuery('perpage', 100),
       // 'page' =>  $page
     ];
-    $hostBillResponse = $hostBillService->getData($queryParams);
+    $hostBillResponse = $hostBillService->getData($apiParams);
 
     if ($hostBillResponse['success']) {
       $records = $hostBillResponse['data']['clients'] ?? [];
