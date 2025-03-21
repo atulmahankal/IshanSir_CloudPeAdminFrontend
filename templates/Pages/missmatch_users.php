@@ -4,6 +4,11 @@ use Cake\Log\Log;
 use App\Service\HostBillService;
 use App\Service\VirtuozzoService;
 
+// Redirect if not logged in
+if (!$this->request->getSession()->check('Auth.User')) {
+  return $this->redirect(['controller' => 'Auth', 'action' => 'login']);
+}
+
 $records = [];
 $virtuozzoData = [];
 $hbData = [];

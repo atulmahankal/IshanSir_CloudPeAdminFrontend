@@ -86,7 +86,7 @@ $this->assign('title', 'Virtuozzo Users');
   ) ?>
 
   <select class="border rounded ring-0" id="pageSelector">
-    <?php for ($i = 1; $i <= $totalPages; $i++): ?> <!-- Change 10 to your desired number -->
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
       <option <?= ($this->request->getQuery('page') == $i ? 'selected' : '') ?>><?= $i ?></option>
     <?php endfor; ?>
   </select>

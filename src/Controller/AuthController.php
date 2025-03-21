@@ -16,18 +16,13 @@ class AuthController extends AppController
   public function initialize(): void
   {
     parent::initialize();
-    $this->viewBuilder()->setLayout('default');
+    $this->viewBuilder()->setLayout('auth');
     $this->loadComponent('Flash'); // For flash messages
   }
 
   public function beforeFilter(\Cake\Event\EventInterface $event)
   {
     parent::beforeFilter($event);
-
-    // // Redirect if not logged in
-    // if ($this->request->getSession()->check('Auth.User')) {
-    //   return $this->redirect(['controller' => 'Dashboard', 'action' => 'index']);
-    // }
   }
 
   public function login()
@@ -65,14 +60,7 @@ class AuthController extends AppController
         }
 
         if (!empty($resData['session'])) {
-          $this->request->getSession()->write('Auth.User', [
-            "accessType" => $resData['accessType'],
-            "session" => $resData['session'],
-            "isResellerOwner" => $resData['isResellerOwner'],
-            "name" => $resData['name'],
-            "email" => $resData['email'],
-            "status" => $resData['status'],
-          ]);
+          $this->request->getSession()->write('Auth.User', $resData);
           return $this->redirect(['controller' => 'Dashboard', 'action' => 'index']);
         }
       } else {

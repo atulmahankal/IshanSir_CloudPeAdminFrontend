@@ -59,5 +59,21 @@ class AppController extends Controller
         if ($this->request->getPath() === '/') {
             return $this->redirect(['controller' => 'Auth', 'action' => 'login']);
         }
+
+        $devAuth = \Cake\Core\Configure::read('Auth');
+        if($devAuth){
+          $this->request->getSession()->write('Auth.User', $devAuth);
+          $this->Flash->success('Authenticate form local config file.');
+
+          // die($this->referer());  // http://cloudpeadmin.local/pages/missmatch_users
+          // if(\Cake\Routing\Router::url(null, false) != "/login"){
+          //   $this->referer();
+          // }
+
+          if(\Cake\Routing\Router::url(null, false) == "/auth/logout"){
+            $this->Flash->error('Authenticated form local config file. <br />Comment/Remove it to Logout.', ['escape' => false]);
+            // $this->referer();
+          }
+        }
     }
 }
